@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-white mb-4">Student Records</h2>
+<a href="/export/excel" class="btn btn-success mb-3">📊 Export to Excel</a>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped" id="studentTable">
+            <thead>
+                <tr><th>Name</th><th>ID</th><th>Attendance</th><th>Assignment</th>
+                <th>Midterm</th><th>Risk Status</th><th>Probability</th> <th>Actions</th></tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.student_id }}</td>
+                    <td>{{ "%.1f"|format(s.attendance*100) }}%</td>
+                    <td>{{ s.assignment }}</td>
+                    <td>{{ s.midterm }}</td>
+                    <td>
+                        {% if s.risk %}
+                        <span class="risk-badge risk-high">⚠️ At Risk</span>
+                        {% else %}
+                        <span class="risk-badge risk-low">✅ Good Standing</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ "%.1f"|format(s.risk_prob*100) }}%</td>
+                            <td><a href="/intervention/{{ s.id }}" class="btn btn-sm btn-warning">📝 Record</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+{% endblock %}
