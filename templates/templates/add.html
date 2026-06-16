@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-user-plus"></i> Add New Student</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>Full Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Student ID</label>
+                            <input type="text" name="student_id" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+    <label>Program</label>
+    <select name="program" class="form-control">
+        <option>CS</option>
+        <option>IT</option>
+        <option>ENG</option>
+        <option>BUS</option>
+    </select>
+</div>
+                        <div class="col-md-6 mb-3">
+                            <label>Email (for alerts)</label>
+                            <input type="email" name="email" class="form-control" placeholder="optional">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Phone (for SMS)</label>
+                            <input type="text" name="phone" class="form-control" placeholder="optional">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Attendance (0-1)</label>
+                            <input type="number" step="any" name="attendance" class="form-control" required>
+                            <small class="text-muted">Example: 0.75 = 75%</small>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Assignment Avg (0-100)</label>
+                            <input type="number" step="any" name="assignment" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Midterm Score (0-100)</label>
+                            <input type="number" step="any" name="midterm" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Quiz Avg (0-100)</label>
+                            <input type="number" step="any" name="quiz" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Previous GPA (1.5-4.0)</label>
+                            <input type="number" step="any" name="gpa" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Hours Studied/Week</label>
+                            <input type="number" step="any" name="hours" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i> Predict Risk
+                    </button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
