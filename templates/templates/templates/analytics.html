@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-white mb-4">Analytics Dashboard</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">Risk Distribution</div>
+            <div class="card-body">
+                <canvas id="riskPieChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">At-Risk Students by Program</div>
+            <div class="card-body">
+                <canvas id="programBarChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">Summary Statistics</div>
+            <div class="card-body">
+                <table class="table">
+                    <tr><th>Total Students</th><td>{{ total }}</td></tr>
+                    <tr><th>At Risk</th><td class="text-danger">{{ at_risk }}</td></tr>
+                    <tr><th>Good Standing</th><td class="text-success">{{ safe }}</td></tr>
+                    <tr><th>Risk Percentage</th><td>{{ "%.1f"|format(at_risk/total*100) if total>0 else 0 }}%</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="/list" class="btn btn-secondary mt-3">Back to Students</a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxPie = document.getElementById('riskPieChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['At Risk', 'Good Standing'],
+            datasets: [{
+                data: [{{ at_risk }}, {{ safe }}],
+                backgroundColor: ['#dc2626', '#10b981']
+            }]
+        }
+    });
+    const ctxBar = document.getElementById('programBarChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: {{ prog_labels|tojson }},
+            datasets: [{
+                label: 'Number at Risk',
+                data: {{ prog_risk_counts|tojson }},
+                backgroundColor: '#f59e0b'
+            }]
+        }
+    });
+</script>
+{% endblock %}
