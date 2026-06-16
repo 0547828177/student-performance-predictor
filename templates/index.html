@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 fw-bold text-white mb-4">Predict. Prevent. Empower.</h1>
+        <p class="lead text-white mb-5">AI-powered early warning system for student academic success</p>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <i class="fas fa-user-plus fa-3x text-primary mb-3"></i>
+                    <h4>Add Student</h4>
+                    <p>Enter student data and get instant risk prediction</p>
+                    <a href="/add" class="btn btn-primary">Go →</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                    <h4>View All</h4>
+                    <p>See all students and their risk status</p>
+                    <a href="/list" class="btn btn-primary">Go →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
